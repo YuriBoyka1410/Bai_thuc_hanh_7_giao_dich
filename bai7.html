@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tái cấu trúc Hệ thống xử lý Giao dịch</title>
+  </head>
+  <body>
+    <h2>Hệ thống xử lý Giao dịch FinBank</h2>
+    <form>
+      <b>Lựa chọn 1 loại phương thức: <br /><br /> </b>
+      <select name="option" id="option">
+        <option value="DEPOSIT">DEPOSIT</option>
+        <option value="WITHDRAW">WITHDRAW</option>
+        <option value="TRANSFER">TRANSFER</option>
+      </select>
+    </form>
+    <br />
+
+    <button onclick="checking()">Bấm để kiểm tra</button><br /><br />
+    <div id="result"></div>
+
+    <script>
+      function checking() {
+        let transaction_type = document.getElementById("option").value;
+        let amount = Number(prompt("Nhập số tiền cần giao dịch: "));
+        let fee = 0;
+
+        if (isNaN(amount) || amount <= 0) {
+          document.getElementById("result").innerHTML =
+            "Lỗi: Số tiền giao dịch không hợp lệ!";
+          return;
+        }
+
+        switch (transaction_type) {
+          case "DEPOSIT":
+            fee = 0; // Nạp tiền miễn phí
+            break;
+          case "WITHDRAW":
+            if (amount <= 1000000) {
+              fee = 1100;
+            } else if (amount <= 5000000) {
+              fee = 2200;
+            } else {
+              fee = 3300;
+            }
+            break;
+          case "TRANSFER":
+            if (amount <= 1000000) {
+              fee = 2000;
+            } else if (amount <= 5000000) {
+              fee = 5000;
+            } else {
+              fee = 7000;
+            }
+            break;
+          default:
+            document.getElementById("result").innerHTML =
+              "Lỗi giao dịch không hợp lệ!";
+        }
+
+        document.getElementById("result").innerHTML =
+          `Phí phải trả cho giao dịch ${transaction_type} với số tiền ${amount}VNĐ là: ${fee}VNĐ.`;
+      }
+    </script>
+  </body>
+</html>
