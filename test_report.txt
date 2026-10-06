@@ -1,0 +1,5 @@
+console.log(calculateTransactionFee("DEPOSIT", 3000000));
+console.log(calculateTransactionFee("WITHDRAW", 500000));
+console.log(calculateTransactionFee("WITHDRAW", 5000000));
+console.log(calculateTransactionFee("TRANSFER", 1000000));
+console.log(calculateTransactionFee("ABC", 2000000));
